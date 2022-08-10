@@ -13,9 +13,9 @@ public class App {
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
 
-        System.out.println("SERVICE: " + context.getBean(DogService.class));
-        System.out.println("CONTROLLER: " + context.getBean(DogController.class));
-
-        DogController controller = new DogController(new DogServiceDB());
+//        System.out.println("SERVICE: " + context.getBean(DogService.class));
+//        System.out.println("CONTROLLER: " + context.getBean(DogController.class));
+//
+//        DogController controller = new DogController(new DogServiceDB());
     }
 }

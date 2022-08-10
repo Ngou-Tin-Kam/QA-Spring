@@ -37,7 +37,7 @@ public class DogController {
     }
 
     @PostMapping("/createDog")
-    public void makeDog(@RequestBody Dog dog) {
+    public Dog makeDog(@RequestBody Dog dog) {
         System.out.println("Body: " + dog);
         return this.service.makeDog(dog);
     }
@@ -54,7 +54,7 @@ public class DogController {
     }
 
     @PatchMapping("/update/{id}")
-    public void updateDog(@PathVariable int id, @PathParam("name") String name, @PathParam("breed") String breed,
+    public Dog updateDog(@PathVariable int id, @PathParam("name") String name, @PathParam("breed") String breed,
                           @PathParam("cost") Double cost) {
         System.out.println("ID: " + id);
         System.out.println("NAME: " + name);
