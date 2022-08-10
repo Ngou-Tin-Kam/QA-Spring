@@ -4,15 +4,15 @@ import java.util.List;
 
 import com.qa.dogs.domain.Dog;
 
-public class DogService {
+public interface DogService {
 
     Dog makeDog(Dog dog);
 
     List<Dog> getAllDogs();
 
-    Dog getById(long id);
+    Dog getById(int id);
 
-    Biscuit updateDog(long id, String name, String breed, Double cost);
+    Dog updateDog(int id, String name, String breed, Double cost);
 
-    void delete(long id);
+    void delete(int id);
 }

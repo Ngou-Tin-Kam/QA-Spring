@@ -42,28 +42,31 @@ public class DogController {
         return this.service.makeDog(dog);
     }
 
-    @GetMapping("/getAll")
-    public List<Dog> getAllBiscuits() {
-        return this.dogs;
+    @RequestMapping(method = RequestMethod.GET, path = "/getAll")
+    public List<Dog> getAllDogs() {
+        return this.service.getAllDogs();
     }
 
     @GetMapping("/get/{id}")
-    public Dog getById(@PathVariable long id) {
+    public ResponseEntity<Dog> getById(@PathVariable int id) {
         System.out.println("ID: " + id);
-        return this.dogs.get(id);
+        return new ResponseEntity<Dog>(this.service.getById(id), HttpStatus.I_AM_A_TEAPOT);
     }
 
     @PatchMapping("/update/{id}")
-    public void updateDog(@PathVariable long id, @PathParam("name") String name, @PathParam("breed") String breed,
-                              @PathParam("cost") Double cost) {
+    public void updateDog(@PathVariable int id, @PathParam("name") String name, @PathParam("breed") String breed,
+                          @PathParam("cost") Double cost) {
         System.out.println("ID: " + id);
         System.out.println("NAME: " + name);
         System.out.println("BREED: " + breed);
         System.out.println("COST: " + cost);
+
+        return this.service.updateDog(id, name, breed, cost);
     }
 
     @DeleteMapping("/remove/{id}")
     public void delete(@PathVariable int id) {
         System.out.println("ID: " + id);
+        this.service.delete(id);
     }
 }

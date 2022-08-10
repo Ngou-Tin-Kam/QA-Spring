@@ -3,13 +3,11 @@ package com.qa.dogs.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.qa.dogs.domain.Dog;
 
 @Service
-@Primary
 public class DogServiceList implements DogService {
 
     private List<Dog> dogs;
@@ -17,7 +15,7 @@ public class DogServiceList implements DogService {
     public DogServiceList() {
         super();
         this.dogs = new ArrayList<>();
-        this.dogs.add(new Dog(1L, "Blake","Husky", 0.05));
+        this.dogs.add(new Dog("Blake","Husky", 500.0));
     }
 
     @Override
@@ -32,12 +30,12 @@ public class DogServiceList implements DogService {
     }
 
     @Override
-    public Dog getById(long id) {
+    public Dog getById(int id) {
         return this.dogs.get(id);
     }
 
     @Override
-    public Dog updateDog(long id, String name, String breed, Double cost) {
+    public Dog updateDog(int id, String name, String breed, Double cost) {
         Dog toUpdate = this.dogs.get(id);
 
         if (name != null && !name.isBlank())
@@ -51,7 +49,7 @@ public class DogServiceList implements DogService {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) {
         this.dogs.remove(id);
     }
 

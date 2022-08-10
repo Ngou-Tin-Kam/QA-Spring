@@ -1,19 +1,21 @@
 package com.qa.dogs.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@Entity
 public class Dog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
     private String name;
     private String breed;
     private double cost;
 
-    public Dog(long id, String name, String breed,  double cost) {
+    public Dog(Integer id, String name, String breed,  double cost) {
         super();
         this.id = id;
         this.name = name;
@@ -21,15 +23,22 @@ public class Dog {
         this.cost = cost;
     }
 
-    public Dog() {
-        // TODO Auto-generated constructor stub
+    public Dog(String name, String breed, double cost) {
+        super();
+        this.name = name;
+        this.breed = breed;
+        this.cost = cost;
     }
 
-    public long getId() {
+    public Dog() {
+        super();
+    }
+
+    public Integer getId() {
         return this.id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
