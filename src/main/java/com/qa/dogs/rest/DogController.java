@@ -37,10 +37,19 @@ public class DogController {
     }
 
     @PostMapping("/createDog")
-    public Dog makeDog(@RequestBody Dog dog) {
-        System.out.println("Body: " + dog);
-        return this.service.makeDog(dog);
+    public ResponseEntity<Dog> createDog(@RequestBody Dog dog) {
+        if (dog == null) {
+            return new ResponseEntity<Dog>(HttpStatus.BAD_REQUEST);
+        }
+        service.makeDog(dog);
+        return new ResponseEntity<Dog>(dog, HttpStatus.CREATED);
     }
+//    public Dog makeDog(@RequestBody Dog dog) {
+//        System.out.println("Body: " + dog);
+//        return this.service.makeDog(dog);
+//    }
+
+
 
     @RequestMapping(method = RequestMethod.GET, path = "/getAll")
     public List<Dog> getAllDogs() {
