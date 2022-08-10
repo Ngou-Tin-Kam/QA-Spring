@@ -59,7 +59,7 @@ public class DogController {
     @GetMapping("/get/{id}")
     public ResponseEntity<Dog> getById(@PathVariable int id) {
         System.out.println("ID: " + id);
-        return new ResponseEntity<Dog>(this.service.getById(id), HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<Dog>(this.service.getById(id), HttpStatus.OK);
     }
 
     @PatchMapping("/update/{id}")
