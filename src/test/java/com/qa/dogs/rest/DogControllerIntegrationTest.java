@@ -1,7 +1,6 @@
 package com.qa.dogs.rest;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,7 +36,7 @@ public class DogControllerIntegrationTest {
         RequestBuilder req = post("/createDog").content(this.mapper.writeValueAsString(testDog)).contentType(MediaType.APPLICATION_JSON);
 
         ResultMatcher checkStatus = status().isCreated();
-        Dog testSavedDog = new Dog(3, "Phillip", "Chihuahua" , 200.00); //ID changed from 1 to 2, to test both tests at the same time as it is expected 2
+        Dog testSavedDog = new Dog(3, "Phillip", "Chihuahua" , 200.00);
         ResultMatcher checkBody = content().json(this.mapper.writeValueAsString(testSavedDog));
 
         this.mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
@@ -66,5 +65,23 @@ public class DogControllerIntegrationTest {
         ResultMatcher checkBody = content().json(this.mapper.writeValueAsString(new Dog(1, "Simmy", "Pug" , 600.00)));
 
         this.mvc.perform(get("/get/1")).andExpect(status().isOk()).andExpect(checkBody);
+    }
+
+    @Test
+    void testUpdateById() throws Exception {
+        this.mvc.perform(
+                patch("/update/1")
+                        .param("name", "Barry")
+                        .param("breed", "German Shepherd")
+                        .param("cost", "300"))
+                    .andExpect(status().isOk())
+                    .andExpect(content().json(this.mapper.writeValueAsString(new Dog(1, "Barry", "German Shepherd", 300))));
+    }
+
+    @Test
+    void testRemoveById() throws Exception {
+        this.mvc.perform(
+                        delete("/remove/1"))
+                .andExpect(status().isOk());
     }
 }
