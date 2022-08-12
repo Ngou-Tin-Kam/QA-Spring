@@ -21,7 +21,7 @@ public class DogServiceDB implements DogService {
 
     @Override
     public Dog makeDog(Dog dog) {
-       return this.repo.save(dog);
+        return this.repo.save(dog);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class DogServiceDB implements DogService {
 
     @Override
     public Dog updateDog(int id, String name, String breed, Double cost) {
-        Dog toUpdate = this.getById(id);
+        Dog toUpdate = this.repo.findById(id).get();
 
         if (name != null && !name.isBlank())
             toUpdate.setName(name);

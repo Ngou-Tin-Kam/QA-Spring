@@ -15,7 +15,7 @@ public class DogServiceList implements DogService {
     public DogServiceList() {
         super();
         this.dogs = new ArrayList<>();
-        this.dogs.add(new Dog("Blake","Husky", 500.0));
+        this.dogs.add(new Dog("Blake", "Husky", 500.0));
     }
 
     @Override

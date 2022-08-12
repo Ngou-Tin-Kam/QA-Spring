@@ -23,7 +23,7 @@ import com.qa.dogs.service.DogService;
 @RestController
 public class DogController {
 
-        private DogService service;
+    private DogService service;
 
     @Autowired
     public DogController(DogService service) {
@@ -50,7 +50,6 @@ public class DogController {
 //    }
 
 
-
     @RequestMapping(method = RequestMethod.GET, path = "/getAll")
     public List<Dog> getAllDogs() {
         return this.service.getAllDogs();
@@ -64,7 +63,7 @@ public class DogController {
 
     @PatchMapping("/update/{id}")
     public Dog updateDog(@PathVariable int id, @PathParam("name") String name, @PathParam("breed") String breed,
-                          @PathParam("cost") Double cost) {
+                         @PathParam("cost") Double cost) {
         System.out.println("ID: " + id);
         System.out.println("NAME: " + name);
         System.out.println("BREED: " + breed);
